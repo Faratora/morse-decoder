@@ -37,17 +37,12 @@ const MORSE_TABLE = {
   '-----': '0',
 };
 
-function morseToText(morse) {
+function decodeToText(morse) {
   return morse.map((letter) => MORSE_TABLE[letter] || ' ').join('');
 }
 
 module.exports = function decode(expr) {
-  console.log(expr);
-
   const parts = expr.match(/.{1,10}/g); // Разбиваем строку на группы по 10 символов
-
-  console.log('Результат разбивки', parts); // Результат разбивки
-
   const morseParts = parts.map((part) => {
     return part
       .replace(/11/g, '-') // Заменяем '11' на '-'
@@ -56,23 +51,5 @@ module.exports = function decode(expr) {
       .replace(/0+/g, ''); // Убираем '0'
   });
 
-  return morseToText(morseParts);
+  return decodeToText(morseParts);
 };
-
-const expr =
-  '00101010100000000010001011101000101110100000111111**********00001011110000111111000010111000101110100000111010';
-console.log(decode(expr));
-// // Функция для преобразования Морзе в текст
-
-// morseToText(' ');
-/* const morseCode =
-  '00101010100000000010001011101000101110100000111111**********00001011110000111111000010111000101110100000111010'; */
-
-// Основная логика
-/*
-const morse = decode(morseCode);
-const text = morseToText(morse);
-
-console.log('Двоичный код:', morseCode);
-console.log('Преобразованный Морзе:', morse);
-console.log('Итоговый текст:', text); */
