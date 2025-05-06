@@ -37,29 +37,35 @@ const MORSE_TABLE = {
   '-----': '0',
 };
 
-// Функция для преобразования Морзе в текст
-function morseToText(morse) {
-  return morse
-    .split('   ')
-    .map((word) =>
-      word
-        .split(' ')
-        .map((letter) => MORSE_TABLE[letter] || '')
-        .join('')
-    )
-    .join(' ');
+//module.exports =
+function decode(expr) {
+  console.log(expr);
+  const part = expr.match(/.{1,10}/g); // Разбиваем строку на группы по 10 символов
+  console.log('Результат разбивки', part); // Результат разбивки
+  // const external = expr
+  //   .replace(/11/g, '-')
+  //   .replace(/10/g, '.')
+  //   .replace(/00/g, ' ') // убираем излишние пробелы
+  //   .replace(/\*+/g, '   ');
+  // return morseToText(external); // три пробела для разделения слов
 }
+const expr =
+  '00101010100000000010001011101000101110100000111111**********00001011110000111111000010111000101110100000111010';
+decode(expr);
+// // Функция для преобразования Морзе в текст
+// function morseToText(morse) {
+//   return morse
+//     .split('   ')
+//     .map((word) =>
+//       word
+//         .split(' ')
+//         .map((letter) => MORSE_TABLE[letter] || '')
+//         .join('')
+//     )
+//     .join(' ');
+// }
 
-module.exports = function decode(expr) {
-  const external = expr
-    .replace(/11/g, '-')
-    .replace(/10/g, '.')
-    .replace(/00/g, ' ') // убираем излишние пробелы
-    .replace(/\*+/g, '   ');
-  return morseToText(external); // три пробела для разделения слов
-};
-
-morseToText(' ');
+// morseToText(' ');
 /* const morseCode =
   '00101010100000000010001011101000101110100000111111**********00001011110000111111000010111000101110100000111010'; */
 
